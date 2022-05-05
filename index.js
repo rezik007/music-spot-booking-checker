@@ -19,7 +19,7 @@ const getSystemUrl = (from, to) => `https://dzwiekowa.pl/system-rezerwacji/api/r
 const sendNotification = async () => {
   try {
     mailer.messages.create(process.env.MAILGUN_DOMAIN, {
-      from: "Drummer programmer <rezik007@gmail.com>",
+      from: "Drummer programmer <drummer@programmer.com>",
       to: ["rezik007@gmail.com"],
       subject: "SALKA DO WZIĘCIA",
       text: "Ale będzie grane!",
