@@ -9,5 +9,8 @@
     "dayjs": "^1.11.1",
     "node-cron": "^3.0.0",
     "node-fetch": "^3.2.4"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
