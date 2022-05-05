@@ -36,22 +36,16 @@ const fetchApiData = async () => {
 
   const singleRoomBookings = data.reservations.filter(booking => booking.roomId = ROOM_ID);
 
-  console.log('singleRoomBookings', singleRoomBookings)
-
-  // if (singleRoomBookings.length < PREVIOUS_NUMBER_OF_RESERVATIONS) {
-  //   sendNotification(singleRoomBookings);
-  // }
-
-  sendNotification()
+  if (singleRoomBookings.length < PREVIOUS_NUMBER_OF_RESERVATIONS) {
+    sendNotification();
+  }
 
   PREVIOUS_NUMBER_OF_RESERVATIONS = singleRoomBookings.length;
 }
 
-fetchApiData();
 
 const job = nodeCron.schedule("*/10 * * * *", function jobYouNeedToExecute() {
-  // Do whatever you want in here. Send email, Make  database backup or download data.
-  console.log(new Date().toLocaleString());
+  fetchApiData();
 });
 
 job.start();
