@@ -16,20 +16,16 @@ let PREVIOUS_NUMBER_OF_RESERVATIONS = 0;
 
 const getSystemUrl = (from, to) => `https://dzwiekowa.pl/system-rezerwacji/api/reservations?from=${from}&to=${to}&scope=active`;
 
-const sendNotification = async () => {
-  try {
-    mailer.messages.create(process.env.MAILGUN_DOMAIN, {
-      from: "Drummer programmer <drummer@programmer.com>",
-      to: ["rezik007@gmail.com"],
-      subject: "SALKA DO WZIĘCIA",
-      text: "Ale będzie grane!",
-      // html: "<h1>SALKA DO WZIĘCIA</h1>"
-    })
-    .then(msg => console.log(msg)) // logs response data
-    .catch(err => console.log(err)); // logs any error
-  } catch(err) {
-    console.log('Unhandled error occured during mail sending: ', err);
-  }
+const sendNotification = () => {
+  mailer.messages.create(process.env.MAILGUN_DOMAIN, {
+    from: "Drummer programmer <drummer@programmer.com>",
+    to: ["rezik007@gmail.com"],
+    subject: "SALKA DO WZIĘCIA",
+    text: "Ale będzie grane!",
+    // html: "<h1>SALKA DO WZIĘCIA</h1>"
+  })
+  .then(msg => console.log('Email response data: ', msg))
+  .catch(err => console.log('Unhandled error occured during mail sending: ', err)); // logs any error
 };
 
 const fetchApiData = async () => {
