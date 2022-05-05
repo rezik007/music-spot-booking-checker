@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 const ROOM_ID = 1;
 const DATE_API_FORMAT = 'YYYY-MM-DD';
 
-const PREVIOUS_NUMBER_OF_RESERVATIONS = 0;
+let PREVIOUS_NUMBER_OF_RESERVATIONS = 0;
 
 const getSystemUrl = (from, to) => `https://dzwiekowa.pl/system-rezerwacji/api/reservations?from=${from}&to=${to}&scope=active`;
 
@@ -18,6 +18,8 @@ const fetchApiData = async () => {
   const data = await response.json();
 
   const singleRoomBookings = data.reservations.filter(booking => booking.roomId = ROOM_ID);
+
+  console.log('singleRoomBookings', singleRoomBookings)
 
   if (singleRoomBookings.length < PREVIOUS_NUMBER_OF_RESERVATIONS) {
     sendNotification(singleRoomBookings);
